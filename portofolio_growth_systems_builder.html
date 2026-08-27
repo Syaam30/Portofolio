@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Systems Builder | Portofolio</title>
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Poppins:wght@800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 1. Background Utama: Cutting Mat Hijau */
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #4b854a; /* Hijau matras */
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
+            background-size: 25px 25px; /* Ukuran grid */
+            font-family: 'Courier Prime', monospace; /* Font mesin tik */
+            color: #111;
+            overflow-x: hidden;
+        }
+
+        /* Container utama agar rapi di HP */
+        .container {
+            max-width: 550px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            padding-bottom: 60px;
+        }
+
+        /* 2. Elemen Teks (Cut-outs) & Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        p, li {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        /* Gaya dasar potongan kertas (Scrapbook) */
+        .cutout {
+            position: relative;
+            background: #ffffff;
+            border: 3px solid #111;
+            padding: 25px;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.85); /* Bayangan tebal 3D */
+            border-radius: 2px;
+        }
+
+        /* Variasi Warna Kertas */
+        .bg-yellow { background-color: #ffd700; }
+        .bg-brown { 
+            background-color: #3b2512; 
+            color: #fff; 
+            border-color: #fff;
+            box-shadow: 6px 6px 0px rgba(255,255,255,0.7);
+        }
+
+        /* Highlight Text (Stabilitas Marker) */
+        .highlight {
+            background-color: #ffd700;
+            color: #111;
+            padding: 0 4px;
+            font-weight: bold;
+        }
+        .bg-brown .highlight {
+            background-color: #4b854a;
+            color: #fff;
+        }
+
+        /* Variasi Rotasi & Padding tidak beraturan */
+        .rot-left { transform: rotate(-1.5deg); }
+        .rot-right { transform: rotate(2deg); }
+        .rot-slight { transform: rotate(-0.5deg); }
+        .rot-slight-right { transform: rotate(1deg); }
+
+        /* Selotip Kertas (CSS Tape) */
+        .tape {
+            position: absolute;
+            background: rgba(245, 245, 220, 0.9);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            width: 110px;
+            height: 32px;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            z-index: 10;
+            border-left: 2px dashed rgba(0,0,0,0.1);
+            border-right: 2px dashed rgba(0,0,0,0.1);
+        }
+        
+        .tape-corner {
+            width: 80px;
+            top: -10px;
+            left: -20px;
+            transform: rotate(-45deg);
+        }
+
+        .tape-right {
+            width: 80px;
+            top: -10px;
+            right: -20px;
+            left: auto;
+            transform: rotate(45deg);
+        }
+
+        /* 3. Komponen Spesifik */
+        
+        /* Title Slide */
+        .header-section {
+            text-align: center;
+            margin-top: 30px;
+            padding: 30px 20px;
+        }
+        .header-section h1 {
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #d32f2f; /* Aksen merah */
+        }
+
+        /* Core Expertise Grid (Tumpukan kertas kecil) */
+        .expertise-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .expertise-card {
+            border: 2px solid #111;
+            padding: 15px;
+            background: #fff;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.85);
+            position: relative;
+        }
+
+        /* Workflow Flowchart / Typewriter box */
+        .workflow-box {
+            background: #f4f4f4;
+            color: #111;
+            border: 2px dashed #111;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: bold;
+        }
+        .workflow-arrow {
+            display: block;
+            margin: 5px 0;
+            color: #d32f2f;
+        }
+
+        /* Tombol/Tautan */
+        a.btn {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            color: #111;
+            background: #ffd700;
+            border: 3px solid #111;
+            padding: 15px 20px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            box-shadow: 5px 5px 0px #111;
+            transition: all 0.2s;
+            margin-top: 20px;
+        }
+        a.btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px #111;
+        }
+        
+        /* Grid Insight */
+        .insight-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .insight-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- HEADER: Identity & Positioning -->
+        <header class="cutout bg-yellow rot-left header-section">
+            <div class="tape"></div>
+            <h1>E-Commerce Growth & Automation Specialist</h1>
+            <div class="subtitle">Sales Strategy • Marketplace • Affiliate • Ads • Automation</div>
+        </header>
+
+        <!-- NARRATIVE: The "I Don't Just Run Marketing" Manifesto -->
+        <section class="cutout rot-right">
+            <div class="tape tape-corner"></div>
+            <h2>I Don't Just Run Marketing,<br>I Build Growth Systems.</h2>
+            <p>Saya bekerja di persimpangan antara sales, e-commerce, marketing, data, dan technology.</p>
+            <p>Pekerjaan saya dimulai dari memahami bagaimana bisnis dapat bertumbuh: membaca tren pasar, menyusun strategi penjualan, hingga menemukan peluang. Kemudian mengimplementasikannya melalui <strong>Shopee, TikTok Shop, Affiliate, hingga Performance Ads</strong>.</p>
+            <p>Namun, pekerjaan saya <span class="highlight">tidak berhenti ketika strategi dibuat</span>.</p>
+            <p>Saya membangun sistem. Mengubah proses manual menjadi otomatisasi agar operasional berjalan efisien dan <em>scalable</em>.</p>
+            <h4 style="margin-top: 20px; text-align: center;">My goal is simple:</h4>
+            <p style="text-align: center; font-weight: bold; font-size: 1.1rem;">Turn strategy into execution, <br>execution into systems, <br>and systems into scalable growth.</p>
+        </section>
+
+        <!-- 5 CORE EXPERTISE -->
+        <div class="expertise-container">
+            <h2 style="color: white; text-shadow: 2px 2px 0 #111; margin-bottom: -5px; transform: rotate(-2deg); z-index: 1;">5 Core Expertise</h2>
+            
+            <!-- Expertise 1 -->
+            <div class="expertise-card rot-slight bg-yellow">
+                <div class="tape tape-right"></div>
+                <h3>1. Sales & Business Strategy</h3>
+                <p>Mengubah data penjualan dan kondisi pasar menjadi strategi bisnis yang dapat dieksekusi. Dari membaca tren pasar hingga menganalisis <em>gap</em> target & performa.</p>
+            </div>
+
+            <!-- Expertise 2 -->
+            <div class="expertise-card rot-slight-right">
+                <h3>2. Marketplace Operations</h3>
+                <p>Mengelola langsung di <strong>Shopee & TikTok Shop</strong>. Fokus pada <em>product optimization, campaign monitoring,</em> dan <em>conversion analysis</em> untuk efisiensi penjualan.</p>
+            </div>
+
+            <!-- Expertise 3 -->
+            <div class="expertise-card rot-slight bg-yellow">
+                <h3>3. Affiliate & Creator Growth</h3>
+                <p>Membangun sistem affiliate berbasis <span class="highlight">data, performance, & revenue</span>, bukan sekadar jumlah kreator. <em>Creator scoring, segmentation, & relationship management.</em></p>
+            </div>
+
+            <!-- Expertise 4 -->
+            <div class="expertise-card rot-slight-right">
+                <div class="tape tape-corner"></div>
+                <h3>4. Performance Marketing</h3>
+                <p>Membaca data iklan untuk menemukan "kebocoran" dalam <em>funnel</em> (Traffic → Click → ATC → Checkout) dan menentukan prioritas optimasi untuk ROAS maksimal.</p>
+            </div>
+        </div>
+
+        <!-- THE DIFFERENTIATOR: Automation (Brown Card to make it pop) -->
+        <section class="cutout bg-brown rot-left">
+            <div class="tape"></div>
+            <h2 style="color: #ffd700;">5. Business Automation</h2>
+            <p><strong>The Differentiator:</strong> Banyak orang bisa menganalisis, tapi jauh lebih sedikit yang bisa merancang, membangun, dan mengimplementasikan sistem untuk tim.</p>
+            <p>Saya menggunakan <strong>Google Apps Script, n8n, API, & Python</strong> untuk mengubah proses manual menjadi sistem yang bekerja 24/7.</p>
+            
+            <div class="workflow-box">
+                Business Problem
+                <span class="workflow-arrow">↓</span>
+                Process Analysis
+                <span class="workflow-arrow">↓</span>
+                System & Workflow Design
+                <span class="workflow-arrow">↓</span>
+                Automation Development
+                <span class="workflow-arrow">↓</span>
+                Implementation & Monitoring
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
